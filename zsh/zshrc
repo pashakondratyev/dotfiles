@@ -1,6 +1,10 @@
 #!/bin/zsh
 #Pavel Kondratyev
 
+#Set default editor 
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/pavelkondratyev/.oh-my-zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
