@@ -24,6 +24,7 @@ source $ZSH/oh-my-zsh.sh
 #aliases
 eval "$(hub alias -s)"
 
+
 function google {
 	xdg-open "https://www.google.com/search?q=`urlencode "${(j: :)@}"`"
 }
