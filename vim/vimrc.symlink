@@ -2,7 +2,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'morhetz/gruvbox'
-Plug 'rizzatti/dash.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'mikewest/vimroom'

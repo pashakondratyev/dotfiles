@@ -23,7 +23,7 @@ source $ZSH/oh-my-zsh.sh
 
 #aliases
 eval "$(hub alias -s)"
-
+alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'" 
 
 function google {
 	xdg-open "https://www.google.com/search?q=`urlencode "${(j: :)@}"`"
