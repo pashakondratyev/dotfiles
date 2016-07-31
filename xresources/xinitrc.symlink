@@ -1,0 +1,9 @@
+#start i3
+
+exec i3
+
+
+xrandr --dpi 192
+xrdb ~/.Xresources.hidpi
+export GDK_SCALE=2
+export GDK_DPI_SCALE=0.5
