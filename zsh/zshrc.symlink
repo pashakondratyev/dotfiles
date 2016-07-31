@@ -5,21 +5,17 @@
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/pavelkondratyev/.oh-my-zsh
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-#ZSH theme
-ZSH_THEME="robbyrussell"
-
-#plugins
-plugins=(brew git python osx pip tmux web-search wd)
-
 #user configuration
-export PATH="/Library/TeX/texbin:/library/frameworks/python.framework/versions/3.4/bin:/usr/local/bin:/applications/muse:$PATH"
+export PATH="/Library/TeX/texbin:/library/frameworks/python.framework/versions/3.4/bin:/usr/local/bin:$PATH"
+
 export homebrew_cask_opts="--appdir=/applications"
-export dyld_fallback_library_path="$dyld_fallback_library_path:/applications/muse"
-source $ZSH/oh-my-zsh.sh
 
 #aliases
 eval "$(hub alias -s)"
