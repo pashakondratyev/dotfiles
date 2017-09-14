@@ -17,6 +17,9 @@ export PATH="/Library/TeX/texbin:/library/frameworks/python.framework/versions/3
 
 export homebrew_cask_opts="--appdir=/applications"
 
+export NVM_DIR=~/.nvm 
+source $(brew --prefix nvm)/nvm.sh
+
 #aliases
 eval "$(hub alias -s)"
 alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'" 
@@ -25,3 +28,5 @@ function google {
 	xdg-open "https://www.google.com/search?q=`urlencode "${(j: :)@}"`"
 }
 
+# OPAM configuration
+. /Users/pavelkondratyev/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
