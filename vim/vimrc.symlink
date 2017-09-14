@@ -28,8 +28,22 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 colorscheme gruvbox
 set background=dark
 
+" Syntastic Config 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
 " OCAML Stuff
-autocmd FileType ocaml source /Users/pavelkondratyev/.opam/system/share/typerex/ocp-indent/ocp-indent.vim
+"
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/ocp-indent/vim"
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
 " ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
 let s:opam_share_dir = system("opam config var share")
 let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
@@ -62,3 +76,9 @@ for tool in s:opam_packages
   endif
 endfor
 " ## end of OPAM user-setup addition for vim / base ## keep this line
+" ## added by OPAM user-setup for vim / ocp-indent ## 66332cc8c1c3431849ff1c42c0fcb931 ## you can edit, but keep this line
+if count(s:opam_available_tools,"ocp-indent") == 0
+  source "/Users/pavelkondratyev/.opam/system/share/vim/syntax/ocp-indent.vim"
+endif
+" ## end of OPAM user-setup addition for vim / ocp-indent ## keep this line
+autocmd FileType ocaml source /Users/pavelkondratyev/.opam/system/share/ocp-indent/vim/indent/ocaml.vim
