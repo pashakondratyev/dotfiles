@@ -17,12 +17,23 @@ if has('syntax') && (&t_Co > 2)
   syntax on
 endif
 
+" number:           Numbers on side of screen
+" ruler:            Displays line and char number 
+" autoindent:       Autoindent on new lines
 set number
+set ruler
 set autoindent
-set tabstop=4
-set shiftwidth=4
+
+" tabstop:          Width of tab character
+" shiftwidth        Determines the amount of whitespace to add in normal
+" expandtab:        When on uses space instead of tabs"
+set tabstop=2
+set shiftwidth=2
 set backspace=2
-let g:LatexBod_latexmk_async=1
+set expandtab 		 
+
+" If a line has more than 80 characters, highlights excess
+match ErrorMsg '\%>80v.\+'
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 colorscheme gruvbox
