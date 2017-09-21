@@ -13,26 +13,55 @@ call plug#end()
 
 filetype on
 
+" TODO 
+" Language Specific
+" Comment
+" Check if all plugins necessary
+
 if has('syntax') && (&t_Co > 2)
   syntax on
 endif
 
 " number:           Numbers on side of screen
 " ruler:            Displays line and char number 
-" autoindent:       Autoindent on new lines
 set number
 set ruler
-set autoindent
 
+" autoread:         Reloads file when changed from outside
+set autoread
+
+
+"""""""""""""""""""
+" Searching
+"
+" ignorecase:       Ignore case when searching
+" smartcase:        When searching try to be smart about cases 
+" hlsearch:         Highlight search results
+" incsearch:        Search incrementaly
+" Space to turn off highlighting and clear any message already displayed.
+:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch 
+
+"""""""""""""""""""
+" Tabbing 
+"
+" autoindent:       Autoindent on new lines
 " tabstop:          Width of tab character
 " shiftwidth        Determines the amount of whitespace to add in normal
 " expandtab:        When on uses space instead of tabs"
+
+set autoindent
 set tabstop=2
 set shiftwidth=2
 set backspace=2
 set expandtab 		 
 
 " If a line has more than 80 characters, highlights excess
+" Should make this language specific (Get Langauage specific vimrc)
 match ErrorMsg '\%>80v.\+'
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
@@ -49,6 +78,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" NerdTree
+" Opens Nerd Tree with Control + N
+map <C-n> :NERDTreeToggle<CR>
 
 " OCAML Stuff
 "
