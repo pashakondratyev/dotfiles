@@ -4,11 +4,16 @@
 #Set default editor 
 export VISUAL=vim
 export EDITOR="$VISUAL"
-
+# 10ms for keysequences
+#KEYTIMEOUT=1
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+
+#Colors for VIM
+source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh"
+#source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -17,17 +22,12 @@ export PATH="/Library/TeX/texbin:/library/frameworks/python.framework/versions/3
 
 export homebrew_cask_opts="--appdir=/applications"
 
-export NVM_DIR=~/.nvm 
-source $(brew --prefix nvm)/nvm.sh
+#export NVM_DIR=~/.nvm 
+#source $(brew --prefix nvm)/nvm.sh
 
 #aliases
 eval "$(hub alias -s)"
 alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'" 
 
-function google {
-	xdg-open "https://www.google.com/search?q=`urlencode "${(j: :)@}"`"
-}
-
 # OPAM configuration
-
 . /Users/pavelkondratyev/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

@@ -6,6 +6,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'mikewest/vimroom'
 Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/goyo.vim'
 " OCAML Plugins
 Plug 'vim-syntastic/syntastic'
 Plug 'jpalardy/vim-slime'
@@ -22,6 +23,9 @@ if has('syntax') && (&t_Co > 2)
   syntax on
 endif
 
+" eliminates delay on ESC
+" set timeoutlen=1000 ttimeoutlen=0
+
 " number:           Numbers on side of screen
 " ruler:            Displays line and char number 
 set number
@@ -30,13 +34,12 @@ set ruler
 " autoread:         Reloads file when changed from outside
 set autoread
 
-
 """""""""""""""""""
 " Searching
 "
 " ignorecase:       Ignore case when searching
 " smartcase:        When searching try to be smart about cases 
-" hlsearch:         Highlight search results
+" hlsearch:         Highlight search results n(next) N(previous)
 " incsearch:        Search incrementaly
 " Space to turn off highlighting and clear any message already displayed.
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
@@ -60,15 +63,17 @@ set shiftwidth=2
 set backspace=2
 set expandtab 		 
 
-" If a line has more than 80 characters, highlights excess
+" If a line has more than 100 characters, highlights excess
 " Should make this language specific (Get Langauage specific vimrc)
-match ErrorMsg '\%>80v.\+'
+match ErrorMsg '\%>100v.\+'
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
-colorscheme gruvbox
+let g:gruvbox_termcolors="256"
+let g:gruvbox_contrast_dark="soft"
 set background=dark
-
+colorscheme gruvbox
 " Syntastic Config 
+
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -82,6 +87,7 @@ let g:syntastic_check_on_wq = 0
 " Opens Nerd Tree with Control + N
 map <C-n> :NERDTreeToggle<CR>
 
+"
 " OCAML Stuff
 "
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
