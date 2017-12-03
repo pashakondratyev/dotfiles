@@ -4,6 +4,8 @@ bind - split-window -v
 unbind '"'
 unbind %
 
+bind r source-file ~/.tmux.conf
+
 # switch panes using Alt-arrow without prefix
 bind -n M-Left select-pane -L
 bind -n M-Right select-pane -R
