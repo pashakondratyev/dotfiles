@@ -8,6 +8,7 @@ Plug 'mikewest/vimroom'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-fugitive'
 " OCAML Plugins
 Plug 'vim-syntastic/syntastic'
 Plug 'jpalardy/vim-slime'
@@ -23,9 +24,10 @@ filetype on
 if has('syntax') && (&t_Co > 2)
   syntax on
 endif
-
+set encoding=utf-8
 " eliminates delay on ESC
-" set timeoutlen=1000 ttimeoutlen=0
+" set timeoutlen=1000 
+set ttimeoutlen=10
 
 " number:           Numbers on side of screen
 " ruler:            Displays line and char number 
@@ -67,14 +69,19 @@ set expandtab
 " If a line has more than 100 characters, highlights excess
 " Should make this language specific (Get Langauage specific vimrc)
 match ErrorMsg '\%>100v.\+'
+
+"""""""""""""""""""
+" Plugins 
+"
+ 
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 let g:gruvbox_termcolors="256"
 let g:gruvbox_contrast_dark="soft"
 set background=dark
 colorscheme gruvbox
-" Syntastic Config 
 
+" Syntastic Config 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -87,6 +94,10 @@ let g:syntastic_check_on_wq = 0
 " NerdTree
 " Opens Nerd Tree with Control + N
 map <C-n> :NERDTreeToggle<CR>
+
+" Airline
+let g:airline_powerline_fonts = 1
+
 
 "
 " OCAML Stuff
