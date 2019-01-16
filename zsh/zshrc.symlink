@@ -18,16 +18,20 @@ source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #user configuration
-export PATH="/Library/TeX/texbin:/library/frameworks/python.framework/versions/3.4/bin:/usr/local/bin:$PATH"
+export PATH="/Library/TeX/texbin:/usr/local/opt/python@2/libexec/bin:/library/frameworks/python.framework/versions/3.4/bin:/usr/local/bin:$PATH"
 
 export homebrew_cask_opts="--appdir=/applications"
 
 #export NVM_DIR=~/.nvm 
 #source $(brew --prefix nvm)/nvm.sh
 
+#alias v='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
+#alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
+
 #aliases
 eval "$(hub alias -s)"
 alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'" 
-
+#alias python=python3
+#alias pip=pip3
 # OPAM configuration
 . /Users/pavelkondratyev/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
