@@ -5,7 +5,7 @@
 export VISUAL=vim
 export EDITOR="$VISUAL"
 # 10ms for keysequences
-#KEYTIMEOUT=1
+KEYTIMEOUT=1
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -33,5 +33,11 @@ eval "$(hub alias -s)"
 alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'" 
 #alias python=python3
 #alias pip=pip3
-# OPAM configuration
+
+# Compiler Stuff
+export LDFLAGS="-L/usr/local/opt/flex/libs"
+export CPPFLAGS="-I/usr/local/opt/flex/include"
+
+#OPAM configuration
 . /Users/pavelkondratyev/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+export PATH="/usr/local/opt/flex/bin:$PATH"
