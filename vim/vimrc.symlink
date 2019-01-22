@@ -80,7 +80,13 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 " Color Schemes 
 let g:gruvbox_termcolors="256"
-let g:gruvbox_contrast_dark="medium"
+
+if has('macunix')
+  let g:gruvbox_contrast_dark="medium"
+else
+  let g:gruvbox_contrast_dark="soft"
+endif 
+
 set background=dark
 "set termguicolors
 colorscheme gruvbox
