@@ -61,7 +61,7 @@ set incsearch
 " tabstop:          Width of tab character
 " shiftwidth        Determines the amount of whitespace to add in normal
 " expandtab:        When on uses space instead of tabs"
-
+filetype plugin indent on
 set autoindent
 set tabstop=2
 set shiftwidth=2

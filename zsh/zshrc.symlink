@@ -18,8 +18,8 @@ source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #user configuration
-export PATH="/Library/TeX/texbin:/usr/local/opt/python@2/libexec/bin:/library/frameworks/python.framework/versions/3.4/bin:/usr/local/bin:$PATH"
 
+export PATH="/usr/local/bin:Library/TeX/texbin:/usr/local/opt/python@2/libexec/bin:/library/frameworks/python.framework/versions/3.4/bin:$PATH"
 export homebrew_cask_opts="--appdir=/applications"
 
 #export NVM_DIR=~/.nvm 
@@ -36,8 +36,10 @@ alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 
 
 # Compiler Stuff
 export LDFLAGS="-L/usr/local/opt/flex/libs"
+export LDFLAGS="-L/usr/local/opt/bison/lib"
 export CPPFLAGS="-I/usr/local/opt/flex/include"
 
 #OPAM configuration
 . /Users/pavelkondratyev/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 export PATH="/usr/local/opt/flex/bin:$PATH"
+export PATH="/usr/local/opt/bison/bin:$PATH"
