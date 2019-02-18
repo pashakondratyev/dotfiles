@@ -29,7 +29,7 @@ export homebrew_cask_opts="--appdir=/applications"
 #alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
 
 #aliases
-eval "$(hub alias -s)"
+#eval "$(hub alias -s)"
 alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'" 
 #alias python=python3
 #alias pip=pip3
