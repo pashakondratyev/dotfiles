@@ -18,6 +18,8 @@ source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #user configuration
+# Vim mode
+bindkey -v
 
 export PATH="/usr/local/bin:Library/TeX/texbin:/usr/local/opt/python@2/libexec/bin:/library/frameworks/python.framework/versions/3.4/bin:$PATH"
 export homebrew_cask_opts="--appdir=/applications"
