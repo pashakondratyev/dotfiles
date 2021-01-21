@@ -9,8 +9,13 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Chiel92/vim-autoformat'
-" OCAML Plugins
+Plug 'tomlion/vim-solidity'
+"" OCAML Plugins
 Plug 'vim-syntastic/syntastic'
 call plug#end()
 
@@ -30,9 +35,12 @@ set encoding=utf-8
 "set ttimeoutlen=10
 set timeoutlen=10 ttimeoutlen=0
 
+""""""""""""""""""
+" Display
+" 
 " number:           Numbers on side of screen
 " ruler:            Displays line and char number 
-set number
+set number relativenumber
 set ruler
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 set list
