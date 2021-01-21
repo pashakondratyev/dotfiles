@@ -75,7 +75,6 @@ match ErrorMsg '\%>150v.\+'
 """""""""""""""""""
 " Plugins
 "
- 
 let g:ycm_global_ycm_extra_conf = '$HOME/.vim/.ycm_extra_conf.py'
 
 " Color Schemes 
@@ -84,7 +83,7 @@ let g:gruvbox_termcolors="256"
 if has('macunix')
   let g:gruvbox_contrast_dark="medium"
 else
-  let g:gruvbox_contrast_dark="soft"
+  let g:gruvbox_contrast_dark="medium"
 endif 
 
 set background=dark

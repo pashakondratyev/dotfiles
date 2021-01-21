@@ -12,8 +12,14 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 #Colors for VIM
-source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh"
-#source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
+case `uname` in
+  Darwin)
+    source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh"
+  ;;
+  Linux)
+    source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
+  ;;
+esac
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
