@@ -1,9 +1,6 @@
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'morhetz/gruvbox'
-Plug 'Valloric/YouCompleteMe'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'mikewest/vimroom'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/goyo.vim'
@@ -14,9 +11,12 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Chiel92/vim-autoformat'
-Plug 'tomlion/vim-solidity'
-"" OCAML Plugins
-Plug 'vim-syntastic/syntastic'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'mattn/vim-lsp-settings'
+Plug 'runoshun/tscompletejob'
+Plug 'prabirshrestha/asyncomplete-tscompletejob.vim'
+"Plug 'w0rp/ale'
 call plug#end()
 
 filetype on
@@ -25,6 +25,14 @@ filetype on
 " Language Specific
 " Comment
 " Check if all plugins necessary
+
+" LS Stuff
+" Typescript
+call asyncomplete#register_source(asyncomplete#sources#tscompletejob#get_source_options({
+    \ 'name': 'tscompletejob',
+    \ 'allowlist': ['typescript'],
+    \ 'completor': function('asyncomplete#sources#tscompletejob#completor'),
+    \ }))
 
 if has('syntax') && (&t_Co > 2)
   syntax on
@@ -78,12 +86,23 @@ set expandtab
 
 " If a line has more than 100 characters, highlights excess
 " Should make this language specific (Get Langauage specific vimrc)
-match ErrorMsg '\%>150v.\+'
+" match ErrorMsg '\%>150v.\+'
 
 """""""""""""""""""
 " Plugins
 "
-let g:ycm_global_ycm_extra_conf = '$HOME/.vim/.ycm_extra_conf.py'
+
+" ctrl-p
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/Library/*     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
 
 """""""""""""""""""
 " Color Schemes 
@@ -99,31 +118,12 @@ set background=dark
 "set termguicolors
 colorscheme gruvbox
 
-" Syntastic Config 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}q
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_quiet_messages = { "regex": [
-        \ '\mpossible unwanted space at "{"'
-        \ ] }
-
 " NerdTree
 " Opens Nerd Tree with Control + N
 map <C-n> :NERDTreeToggle<CR>
 
 " Airline
 let g:airline_powerline_fonts = 1
-
-" SQL Formater
-noremap <F3> :Autoformat<CR>
-let g:formatdef_sql = '"sqlformat --reindent --keywords upper - identifiers lower -"'
-let g:formatters_sql = ['sql']
 
 " Install Vim Plug
 if empty(glob('~/.vim/autoload/plug.vim'))

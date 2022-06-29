@@ -42,6 +42,8 @@ alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 
 alias tmux="tmux -2"
 #alias python=python3
 #alias pip=pip3
+#
+alias conjure-postman=/Volumes/git/conjure-postman/conjure-postman/build/distributions/conjure-postman-0.2.0-195-gd661c4d/bin/conjure-postman
 
 # Compiler Stuff
 export LDFLAGS="-L/usr/local/opt/flex/libs"
@@ -52,3 +54,31 @@ export CPPFLAGS="-I/usr/local/opt/flex/include"
 . /Users/pavelkondratyev/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 export PATH="/usr/local/opt/flex/bin:$PATH"
 export PATH="/usr/local/opt/bison/bin:$PATH"
+
+
+
+export GRADLE_OPTS="-Djavax.net.ssl.trustStore=$(/usr/libexec/java_home)/lib/security/cacerts -Djavax.net.ssl.trustStorePassword=changeit -Djavax.net.ssl.keyStore=$(/usr/libexec/java_home)/lib/security/cacerts -Djavax.net.ssl.keyStorePassword=changeit"
+alias dps="docker ps -a"
+alias drm="docker ps -a | cut -d ' ' -f 1 | grep -v CONTAINER | xargs docker rm -f"
+alias drmp="docker ps -a --format '{{.ID}} {{.Image}}' | grep -v postgres | cut -d ' ' -f 1 | xargs docker rm -f"
+function dssh() {
+    docker exec -i -t $1 bash
+}
+
+# SSH into a docker image using SH (not bash): dsh <ID>
+function dsh() {
+    docker exec -i -t $1 sh
+}
+
+alias dclim='docker rmi -f $(docker images -qf dangling=true) $(docker images --format "{{.Repository}} {{.ID}}" | grep --color=never -E "^.*((_magritte.*)|(_web)|(_multipass)|(_explorer)|(_wiremock))\s[a-zA-Z0-9]{12}$" | cut -d " " -f 2)'
+alias drmall='docker rmi $(docker images -q)'
+alias dkillall='docker rm -fv `docker ps -aq`'
+alias dlog='docker logs -f'
+alias dlm='docker logs -f `docker ps -a | grep magritte-1.0 | cut -d " " -f 1`'
+alias dlmc='docker logs -f `docker ps -a | grep magritte-coordinator | cut -d " " -f 1`'
+alias dnetworkkill='docker network ls | cut -d" " -f1 | xargs docker network rm '
+
+# Get logs 
+function dockerlogs() {
+   docker logs -f $1 $2
+}
