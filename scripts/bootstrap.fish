@@ -118,6 +118,10 @@ install_dotfiles
 	and success 'dotfiles'
 	or abort 'dotfiles'
 
+fisher update
+	and success 'plugins'
+	or abort 'plugins'
+
 yes | fish_config theme save gruvbox
 	and success 'colorscheme'
 	or abort 'colorscheme'
