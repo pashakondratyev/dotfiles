@@ -96,6 +96,8 @@ function install_dotfiles
 		or abort plugins
 	link_file $DOTFILES_ROOT/fish/gruvbox.theme $__fish_config_dir/themes/gruvbox.theme backup
 		or abort gruvbox.theme
+	link_file $DOTFILES_ROOT/fish/config.fish $__fish_config_dir/config.fish backup
+		or abort plugins
 	link_file $DOTFILES_ROOT/system/bat.config $HOME/.config/bat/config backup
 		or abort bat
 	link_file $DOTFILES_ROOT/kitty/kitty.conf $HOME/.config/kitty/kitty.conf backup
