@@ -58,6 +58,7 @@ export PATH="/usr/local/opt/bison/bin:$PATH"
 
 
 export GRADLE_OPTS="-Djavax.net.ssl.trustStore=$(/usr/libexec/java_home)/lib/security/cacerts -Djavax.net.ssl.trustStorePassword=changeit -Djavax.net.ssl.keyStore=$(/usr/libexec/java_home)/lib/security/cacerts -Djavax.net.ssl.keyStorePassword=changeit"
+
 alias dps="docker ps -a"
 alias drm="docker ps -a | cut -d ' ' -f 1 | grep -v CONTAINER | xargs docker rm -f"
 alias drmp="docker ps -a --format '{{.ID}} {{.Image}}' | grep -v postgres | cut -d ' ' -f 1 | xargs docker rm -f"
