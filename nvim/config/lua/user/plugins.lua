@@ -59,6 +59,28 @@ packer.startup(function(use)
 		end,
 	})
 
+	use({
+		"nvim-telescope/telescope.nvim",
+		config = function()
+			require("user.telescope")
+		end,
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
+	})
+
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		config = function()
+			require("user.treesitter")
+		end,
+		requires = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			"nvim-treesitter/nvim-treesitter-context",
+			"lewis6991/spellsitter.nvim",
+		},
+	})
+
     if is_bootstrap then
 		packer.sync()
 	end
