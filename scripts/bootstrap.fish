@@ -50,11 +50,20 @@ function setup_gitconfig
 		# user.name in the new one
 		set user_name (git config --global --get user.name)
 			and set user_email (git config --global --get user.email)
+			and set user_signingkey (git config --global --get user.signingkey)
 			and mv ~/.gitconfig ~/.gitconfig.backup
 			and git config --global user.name $user_name
 			and git config --global user.email $user_email
+			and git config --global user.signingkey $user_signingkey
 			and success "moved ~/.gitconfig to ~/.gitconfig.backup"
 			or abort 'failed to setup git user name and email'
+
+		
+		set user_signingkey (git config --global --get user.signingkey)
+			and git config --global user.signingkey $user_signingkey
+			and git config --global commit.gpgsign true
+			and success "set gpg signing"
+			or abort 'no gpg-keys configured'
 	else
 		# otherwise this gitconfig was already made by the dotfiles
 		info "already managed by dotfiles"
