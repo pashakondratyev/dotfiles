@@ -13,6 +13,13 @@ bind -n M-Right select-pane -R
 bind -n M-Up select-pane -U
 bind -n M-Down select-pane -D
 
+# Vim bingings 
+bind h select-pane -L
+bind l select-pane -R
+bind k select-pane -U
+bind j select-pane -D
+
+
 # remove lag from going to escape mode in vim
 set -s escape-time 0
 
@@ -36,10 +43,10 @@ set -g message-command-style fg=colour12,bg=black
 #window mode
 
 # window status
-setw -g window-status-format " #F#I:#W#F "
-setw -g window-status-current-format " #F#I:#W#F "
-setw -g window-status-format "#[fg=magenta]#[bg=black] #I #[bg=cyan]#[fg=colour8] #W "
-setw -g window-status-current-format "#[bg=brightmagenta]#[fg=colour8] #I #[fg=colour8]#[bg=colour14] #W "
+#setw -g window-status-format " #F#I:#W#F "
+#setw -g window-status-current-format " #F#I:#W#F "
+#setw -g window-status-format "#[fg=magenta]#[bg=black] #I #[bg=cyan]#[fg=colour8] #W "
+#setw -g window-status-current-format "#[bg=brightmagenta]#[fg=colour8] #I #[fg=colour8]#[bg=colour14] #W "
 
 # Info on left (I don't have a session display for now)
 set -g status-left ''
@@ -50,6 +57,9 @@ set-option -g visual-bell off
 set-option -g visual-silence off
 set-window-option -g monitor-activity off
 set-option -g bell-action none
+
+set-option -g automatic-rename on
+set-option -g automatic-rename-format '#{b:pane_current_path}'
 
 set -g default-terminal "screen-256color"
 
@@ -74,11 +84,13 @@ set -g status-right '#[fg=colour233,bg=colour241,bold] %d/%m #[fg=colour233,bg=c
 set -g status-right-length 50
 set -g status-left-length 20
 
+setw -g window-status-format "#[fg=magenta,bg=black] #I #(icons #{pane_current_command}) #[fg=magenta,bg=black] #{b:pane_current_path} "
+setw -g window-status-current-format "#[fg=colour208,bg=colour238,bold] #I #(icons #{pane_current_command}) #[fg=colour208,bg=colour238,bold] #{b:pane_current_path} "
 setw -g window-status-current-style bg=colour0,fg=colour11,dim,fg=colour12,bg=colour238,bold
-setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour208]#F '
+#setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour208]#F '
 
 setw -g window-status-style bg=green,fg=black,reverse,fg=colour138,bg=colour235,none
-setw -g window-status-format ' #I#[fg=colour237]:#[fg=colour250]#W#[fg=colour244]#F '
+#setw -g window-status-format ' #I#[fg=colour237]:#[fg=colour250]#W#[fg=colour244]#F '
 
 setw -g window-status-bell-style bold,fg=colour255,bg=colour1
 
@@ -88,3 +100,28 @@ setw -g window-status-bell-style bold,fg=colour255,bg=colour1
 set -g message-style fg=black,bg=yellow,bold,fg=colour232,bg=colour166
 
 # }
+
+# 
+
+#
+bind -r ^ last-window
+bind -r k select-pane -U
+bind -r j select-pane -D
+bind -r h select-pane -L
+bind -r l select-pane -R
+
+# resize using
+bind -r H resize-pane -L 5
+bind -r J resize-pane -D 5
+bind -r K resize-pane -U 5
+bind -r L resize-pane -R 5
+
+bind-key -r f display-popup -E "tmux-sessionizer"
+bind-key -r g run-shell "tmux neww tmux-sessionizer default"
+bind-key -r G run-shell -b "/Users/$USER/.tmux/plugins/tmux-fzf/scripts/window.sh switch"
+bind-key "R" run-shell -b "/Users/$USER/.tmux/plugins/tmux-fzf/scripts/window.sh rename"
+
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'sainnhe/tmux-fzf'
+
+run '~/.tmux/plugins/tpm/tpm'

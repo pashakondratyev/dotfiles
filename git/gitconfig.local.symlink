@@ -41,8 +41,6 @@
   fetchJobs = 4
 [log]
   showSignature = false
-[pull]
-  ff = only
 [init]
   defaultBranch = main
 [format]

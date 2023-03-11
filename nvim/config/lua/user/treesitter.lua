@@ -20,8 +20,8 @@ require("nvim-treesitter.configs").setup({
     "scss",
     "typescript",
     "vim",
-    "yaml" 
-  }, 
+    "yaml"
+  },
 
   sync_install = false,
 

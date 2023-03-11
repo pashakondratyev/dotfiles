@@ -5,7 +5,7 @@ vim.g.gruvbox_underline = 1
 vim.g.gruvbox_undercurl = 1
 
 vim.cmd([[
-set background=dark
-set termguicolors
-colorscheme gruvbox
+    set background=dark
+    set termguicolors
+    colorscheme gruvbox
 ]])
