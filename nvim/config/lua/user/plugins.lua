@@ -102,41 +102,32 @@ packer.startup(function(use)
         end,
     })
 
-    use({
-        "williamboman/mason.nvim",
+    use ({
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v2.x',
         requires = {
-            -- lsp
-            "williamboman/mason-lspconfig.nvim",
-            "onsails/lspkind-nvim",
-            "neovim/nvim-lspconfig",
-            "jose-elias-alvarez/null-ls.nvim",
-            "nvim-lua/lsp-status.nvim",
-            "onsails/lspkind-nvim",
-            "simrat39/symbols-outline.nvim",
-
-            -- cmp
-            "hrsh7th/nvim-cmp",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
-            "hrsh7th/cmp-cmdline",
-            "hrsh7th/cmp-emoji",
-            "hrsh7th/cmp-calc",
-
-            -- cmp x lsp
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-nvim-lsp-signature-help",
-
-            -- snip x cmp
-            "saadparwaiz1/cmp_luasnip",
-            "L3MON4D3/LuaSnip",
-            "rafamadriz/friendly-snippets",
+          -- LSP Support
+          {'neovim/nvim-lspconfig'},             -- Required
+          {'williamboman/mason.nvim'},           -- Optional
+          {'williamboman/mason-lspconfig.nvim'}, -- Optional
+          {'nvim-lua/lsp-status.nvim'}, --Optional
+          {"onsails/lspkind-nvim"},
+          -- Autocompletion
+          {'hrsh7th/nvim-cmp'},         -- Required
+          {'hrsh7th/cmp-nvim-lsp'},     -- Required
+          {'hrsh7th/cmp-buffer'},       -- Optional
+          {'hrsh7th/cmp-path'},         -- Optional
+          {'saadparwaiz1/cmp_luasnip'}, -- Optional
+          {'hrsh7th/cmp-nvim-lua'},     -- Optional
+          -- Snippets
+          {'L3MON4D3/LuaSnip'},             -- Required
+          {'rafamadriz/friendly-snippets'}, -- Optional
         },
         config = function()
             require("lspkind").init()
             require("user.lsp")
-            require("user.cmp")
         end,
-    })
+      })
 
     use ({
         'phaazon/hop.nvim',
