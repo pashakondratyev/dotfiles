@@ -11,6 +11,4 @@ xnoremap("<leader>p", "\"_dP")
 nnoremap("<leader>l", ":bnext<CR>")
 nnoremap("<leader>h", ":bprevious<CR>")
 nnoremap("<leader>q", ":bdelete<CR>")
-
-
-
+nnoremap("<leader>r", vim.lsp.buf.format)

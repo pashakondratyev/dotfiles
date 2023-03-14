@@ -35,3 +35,11 @@ vim.opt.shortmess:append("c")
 -- vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = " "
+local augroup = vim.api.nvim_create_augroup
+local PavelGroup = augroup('Pavel', {})
+local autocmd = vim.api.nvim_create_autocmd
+autocmd({"BufWritePre"}, {
+    group = PavelGroup,
+    pattern = "*.tsx,*.ts,*.jsx,*.js",
+    command = ":EslintFixAll",
+})

@@ -102,40 +102,56 @@ packer.startup(function(use)
         end,
     })
 
-    use ({
+    use({
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v2.x',
         requires = {
-          -- LSP Support
-          {'neovim/nvim-lspconfig'},             -- Required
-          {'williamboman/mason.nvim'},           -- Optional
-          {'williamboman/mason-lspconfig.nvim'}, -- Optional
-          {'nvim-lua/lsp-status.nvim'}, --Optional
-          {"onsails/lspkind-nvim"},
-          -- Autocompletion
-          {'hrsh7th/nvim-cmp'},         -- Required
-          {'hrsh7th/cmp-nvim-lsp'},     -- Required
-          {'hrsh7th/cmp-buffer'},       -- Optional
-          {'hrsh7th/cmp-path'},         -- Optional
-          {'saadparwaiz1/cmp_luasnip'}, -- Optional
-          {'hrsh7th/cmp-nvim-lua'},     -- Optional
-          -- Snippets
-          {'L3MON4D3/LuaSnip'},             -- Required
-          {'rafamadriz/friendly-snippets'}, -- Optional
+            -- LSP Support
+            { 'neovim/nvim-lspconfig' },         -- Required
+            { 'williamboman/mason.nvim' },       -- Optional
+            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+            { 'nvim-lua/lsp-status.nvim' },      --Optional
+            { "onsails/lspkind-nvim" },
+            -- Autocompletion
+            { 'hrsh7th/nvim-cmp' },         -- Required
+            { 'hrsh7th/cmp-nvim-lsp' },     -- Required
+            { 'hrsh7th/cmp-buffer' },       -- Optional
+            { 'hrsh7th/cmp-path' },         -- Optional
+            { 'saadparwaiz1/cmp_luasnip' }, -- Optional
+            { 'hrsh7th/cmp-nvim-lua' },     -- Optional
+            -- Snippets
+            { 'L3MON4D3/LuaSnip' },         -- Required
+            { 'rafamadriz/friendly-snippets' }, -- Optional
         },
         config = function()
             require("lspkind").init()
             require("user.lsp")
         end,
-      })
+    })
 
-    use ({
+    use({
         'phaazon/hop.nvim',
         branch = 'v2', -- optional but strongly recommended
         config = function()
             require("user.hop")
         end,
     })
+
+    use({
+        'tpope/vim-fugitive',
+        config = function()
+            require("user.fugitive")
+        end,
+    })
+
+    use({
+        'theprimeagen/harpoon',
+        config = function()
+            require("user.harpoon")
+        end,
+    })
+
+    use("theprimeagen/refactoring.nvim")
 
     if is_bootstrap then
         packer.sync()
