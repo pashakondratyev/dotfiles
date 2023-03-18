@@ -68,6 +68,7 @@ packer.startup(function(use)
             "nvim-lua/plenary.nvim",
         },
     })
+    use({ 'folke/which-key.nvim', opts = {} })
 
     use({
         "nvim-treesitter/nvim-treesitter",

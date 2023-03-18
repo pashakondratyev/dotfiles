@@ -38,7 +38,7 @@ vim.g.mapleader = " "
 local augroup = vim.api.nvim_create_augroup
 local PavelGroup = augroup('Pavel', {})
 local autocmd = vim.api.nvim_create_autocmd
-autocmd({"BufWritePre"}, {
+autocmd({ "BufWritePre" }, {
     group = PavelGroup,
     pattern = "*.tsx,*.ts,*.jsx,*.js",
     command = ":EslintFixAll",
