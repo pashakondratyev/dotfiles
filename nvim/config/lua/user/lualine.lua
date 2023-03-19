@@ -1,6 +1,6 @@
 require("lualine").setup({
 	options = {
-		theme = "gruvbox",
+		theme = "gruvbox-material",
 		component_separators = "",
 		section_separators = "",
 	},
@@ -15,12 +15,6 @@ require("lualine").setup({
 				file_status = false,
 				path = 1,
 			},
-		},
-		lualine_x = {
-			function()
-				return require("lsp-status").status()
-			end,
-			"encoding",
 		},
 	},
 })

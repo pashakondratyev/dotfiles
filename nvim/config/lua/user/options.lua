@@ -24,15 +24,23 @@ vim.opt.isfname:append("@-@")
 
 -- Give more space for displaying messages.
 vim.opt.cmdheight = 1
+vim.opt.spell = true
+vim.opt.spelllang = { "en_us" }
 
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 -- delays and poor user experience.
 vim.opt.updatetime = 50
 
+vim.opt.ruler = true
+
 -- Don't pass messages to |ins-completion-menu|.
 vim.opt.shortmess:append("c")
+vim.opt.termguicolors = true
 
--- vim.opt.colorcolumn = "80"
+--vim.opt.colorcolumn = "80"
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
 
 vim.g.mapleader = " "
 local augroup = vim.api.nvim_create_augroup

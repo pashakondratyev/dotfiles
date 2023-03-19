@@ -8,7 +8,7 @@ else
         grep -v "$PROJECTS" |
         sort -rnk1 |
         uniq | 
-        fzf --prompt "﬿ ")
+        fzf --prompt "﬿ " --preview "cat $PROJECTS/{}/README.md")
 fi
 
 if [[ -z $selected ]]; then

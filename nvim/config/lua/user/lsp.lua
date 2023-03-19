@@ -8,15 +8,6 @@ local lsp = require('lsp-zero').preset({
 -- Fix Undefined global 'vim'
 lsp.nvim_workspace()
 
-local lspstatus = require("lsp-status")
-lspstatus.config({
-    status_symbol = "⬤ ",
-    current_function = true,
-    diagnostics = false,
-    kind_labels = require("lspkind").presets["default"],
-})
-lspstatus.register_progress()
-
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -50,16 +41,6 @@ lsp.configure('jdtls', {
     }
 })
 
-lsp.set_preferences({
-    suggest_lsp_servers = true,
-    sign_icons = {
-        error = "",
-        warn = "",
-        hint = "",
-        info = "",
-    }
-})
-
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
@@ -78,8 +59,24 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
+local float_config = {
+  focusable = false,
+  style = "minimal",
+  border = "rounded",
+  source = "always",
+  header = "",
+  prefix = "",
+}
 
 vim.diagnostic.config({
-    virtual_text = true
+    virtual_text = { spacing = 4, prefix = "●" },
+    severity_sort = true,
+    float = float_config,
 })
+
+for name, icon in pairs(require("user.icons").diagnostics) do
+  name = "DiagnosticSign" .. name
+  vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+end
+
 lsp.setup()

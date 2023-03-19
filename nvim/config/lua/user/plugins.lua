@@ -30,8 +30,21 @@ packer.startup(function(use)
         "rmagatti/auto-session",
         config = function()
             require("auto-session").setup({
+                log_level = "error",
                 auto_save_enabled = true,
                 auto_restore_enabled = true,
+                pre_save_cmds = {
+                    -- prevents cmdline spanning almost the entire window height on restore.
+                    -- this will close all float windows before saving.
+                    function()
+                        for _, win in ipairs(vim.api.nvim_list_wins()) do
+                            local config = vim.api.nvim_win_get_config(win)
+                            if config.relative ~= "" then
+                                vim.api.nvim_win_close(win, false)
+                            end
+                        end
+                    end,
+                },
             })
         end,
     })
@@ -46,7 +59,7 @@ packer.startup(function(use)
     })
 
     use({
-        "gruvbox-community/gruvbox",
+        "ellisonleao/gruvbox.nvim",
         config = function()
             require("user.colorscheme")
         end,
@@ -95,9 +108,6 @@ packer.startup(function(use)
 
     use({
         "nvim-lualine/lualine.nvim",
-        requires = {
-            "nvim-lua/lsp-status.nvim",
-        },
         config = function()
             require("user.lualine")
         end,
@@ -108,20 +118,20 @@ packer.startup(function(use)
         branch = 'v2.x',
         requires = {
             -- LSP Support
-            { 'neovim/nvim-lspconfig' },         -- Required
-            { 'williamboman/mason.nvim' },       -- Optional
+            { 'neovim/nvim-lspconfig' },             -- Required
+            { 'williamboman/mason.nvim' },           -- Optional
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-            { 'nvim-lua/lsp-status.nvim' },      --Optional
+            { 'nvim-lua/lsp-status.nvim' },          --Optional
             { "onsails/lspkind-nvim" },
             -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },         -- Required
-            { 'hrsh7th/cmp-nvim-lsp' },     -- Required
-            { 'hrsh7th/cmp-buffer' },       -- Optional
-            { 'hrsh7th/cmp-path' },         -- Optional
-            { 'saadparwaiz1/cmp_luasnip' }, -- Optional
-            { 'hrsh7th/cmp-nvim-lua' },     -- Optional
+            { 'hrsh7th/nvim-cmp' },             -- Required
+            { 'hrsh7th/cmp-nvim-lsp' },         -- Required
+            { 'hrsh7th/cmp-buffer' },           -- Optional
+            { 'hrsh7th/cmp-path' },             -- Optional
+            { 'saadparwaiz1/cmp_luasnip' },     -- Optional
+            { 'hrsh7th/cmp-nvim-lua' },         -- Optional
             -- Snippets
-            { 'L3MON4D3/LuaSnip' },         -- Required
+            { 'L3MON4D3/LuaSnip' },             -- Required
             { 'rafamadriz/friendly-snippets' }, -- Optional
         },
         config = function()
