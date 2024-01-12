@@ -83,3 +83,4 @@ alias dnetworkkill='docker network ls | cut -d" " -f1 | xargs docker network rm 
 function dockerlogs() {
    docker logs -f $1 $2
 }
+export NODE_EXTRA_CA_CERTS=/Users/pkondratyev/Downloads/PalantirThirdGenRootCA-selfsign.pem

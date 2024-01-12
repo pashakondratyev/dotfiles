@@ -50,6 +50,13 @@ packer.startup(function(use)
     })
 
     use({
+        "github/copilot.vim",
+        config = function()
+            require("user.copilot")
+        end,
+    })
+
+    use({
         "kyazdani42/nvim-web-devicons",
         config = function()
             require("nvim-web-devicons").setup({

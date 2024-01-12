@@ -4,6 +4,7 @@ set -Ux VISUAL $EDITOR
 
 set -Ux DOTFILES ~/Projects/dotfiles
 set -Ux PROJECTS ~/Projects
+set -Ux NODE_EXTRA_CA_CERTS /Users/pkondratyev/Downloads/PalantirThirdGenRootCA-selfsign.pem
 
 fish_add_path -a $DOTFILES/bin $HOME/.bin
 
