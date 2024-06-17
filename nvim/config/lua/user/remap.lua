@@ -23,8 +23,8 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- remap splits
-vim.keymap.set("n", "<C-w>|", ":split<CR>")
-vim.keymap.set("n", "<C-w>_", ":vsplit<CR>")
+vim.keymap.set("n", "<C-w>_", ":split<CR>")
+vim.keymap.set("n", "<C-w>|", ":vsplit<CR>")
 
 vim.keymap.set("n", "<C-c>", "<Esc>")
 

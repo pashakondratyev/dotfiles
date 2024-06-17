@@ -40,6 +40,33 @@ lsp.configure('jdtls', {
         }
     }
 })
+local flake_ignores = {"E203", -- whitespace before :
+                       "W503", -- line break before binary operator
+                       "E501", -- line too long
+                       "C901"} -- mccabe complexity
+
+lsp.use('pylsp', {
+    settings = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    ignore = {'W391', "W503", "W504"},
+                    maxLineLength = 120
+                },
+                rope_autoimport = {
+                    enabled = true;
+                },
+                flake8 = {
+                    ignore = table.concat(flake_ignores, ',');
+                },
+                mccabe = {
+                    enabled = false
+                }
+            }
+        }
+    }
+
+})
 
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
@@ -60,12 +87,12 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 local float_config = {
-  focusable = false,
-  style = "minimal",
-  border = "rounded",
-  source = "always",
-  header = "",
-  prefix = "",
+    focusable = false,
+    style = "minimal",
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
 }
 
 vim.diagnostic.config({
@@ -75,8 +102,8 @@ vim.diagnostic.config({
 })
 
 for name, icon in pairs(require("user.icons").diagnostics) do
-  name = "DiagnosticSign" .. name
-  vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+    name = "DiagnosticSign" .. name
+    vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
 end
 
 lsp.setup()
