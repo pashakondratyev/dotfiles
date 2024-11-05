@@ -45,7 +45,7 @@ local flake_ignores = {"E203", -- whitespace before :
                        "E501", -- line too long
                        "C901"} -- mccabe complexity
 
-lsp.use('pylsp', {
+--[[ lsp.use('pylsp', {
     settings = {
         pylsp = {
             plugins = {
@@ -65,7 +65,29 @@ lsp.use('pylsp', {
             }
         }
     }
+})
+]]--
 
+local lsp_config = require("lspconfig")
+local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+require("mason-lspconfig").setup({
+    handlers = {
+        basedpyright = function()
+                lsp_config.basedpyright.setup({
+                    capabilities = lsp_capabilities,
+                    settings = {
+                        basedpyright = {
+                            analysis = {
+                                autoSearchPaths = true,
+								diagnosticMode = "openFilesOnly",
+								useLibraryCodeForTypes = true,
+								typeCheckingMode = "standard"
+                            }
+                        }
+                    }
+                })
+        end,
+    }
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -78,10 +100,26 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
     vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
     vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "<leader>rr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "gI", function() vim.lsp.buf.implementation() end, opts)
+    vim.keymap.set("n", "<leader>rr", function() vim.lsp.buf.references() end, {
+        buffer = bufnr,
+        remap = false,
+        desc = "Go to references"
+    })
+    vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, {
+        buffer = bufnr,
+        remap = false,
+        desc = "Rename"
+    })
+    vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, {
+        buffer = bufnr,
+        remap = false,
+        desc = "Go to references"
+    })
+    vim.keymap.set("n", "gI", function() vim.lsp.buf.implementation() end, {
+        buffer = bufnr,
+        remap = false,
+        desc = "Go to implementation"
+    })
     vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)

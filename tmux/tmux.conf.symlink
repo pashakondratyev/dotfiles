@@ -85,7 +85,7 @@ set -g status-right-length 50
 set -g status-left-length 20
 
 setw -g window-status-format "#[fg=magenta,bg=black] #I #(icons #{pane_current_command}) #[fg=magenta,bg=black] #{b:pane_current_path} "
-setw -g window-status-current-format "#[fg=colour208,bg=colour238,bold] #I #(icons #{pane_current_command}) #[fg=colour208,bg=colour238,bold] #{b:pane_current_path} "
+setw -g window-status-current-format "#[fg=brred,bg=colour238,bold] #I #(icons #{pane_current_command}) #[fg=brred,bg=colour238,bold] #{b:pane_current_path} "
 setw -g window-status-current-style bg=colour0,fg=colour11,dim,fg=colour12,bg=colour238,bold
 #setw -g window-status-current-format ' #I#[fg=colour250]:#[fg=colour255]#W#[fg=colour208]#F '
 

@@ -105,6 +105,8 @@ function install_dotfiles
 		or abort plugins
 	link_file $DOTFILES_ROOT/fish/gruvbox.theme $__fish_config_dir/themes/gruvbox.theme backup
 		or abort gruvbox.theme
+	link_file $DOTFILES_ROOT/fish/kanagawa.theme $__fish_config_dir/themes/kanagawa.theme backup
+		or abort kanagawa.theme
 	link_file $DOTFILES_ROOT/fish/config.fish $__fish_config_dir/config.fish backup
 		or abort plugins
 	link_file $DOTFILES_ROOT/system/bat.config $HOME/.config/bat/config backup
@@ -133,7 +135,7 @@ fisher update
 	and success 'plugins'
 	or abort 'plugins'
 
-yes | fish_config theme save gruvbox
+yes | fish_config theme save kanagawa
 	and success 'colorscheme'
 	or abort 'colorscheme'
 
